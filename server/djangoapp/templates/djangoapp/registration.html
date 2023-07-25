@@ -1,11 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     {% load static %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-    <body>
-    <!--Add a registration form here -->
-    </body>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'djangoapp:index' %}"
+          >Dealership Website</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navLinks"
+          aria-controls="navLinks"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navLinks">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'djangoapp:index' %}"
+                >Home <span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'djangoapp:about' %}">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'djangoapp:contact' %}"
+                >Contact</a
+              >
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+            <li>
+              <a class="btn btn-link" href="#"
+                >{{ user.first_name }}({{ user.username }})</a
+              >
+              <a class="btn btn-link" href="{% url 'djangoapp:logout' %}"
+                >Logout</a
+              >
+            </li>
+            {% else %}
+            <li>
+              <form
+                class="mb-0 form-inline"
+                action="{% url 'djangoapp:login' %}"
+                method="post"
+              >
+                {% csrf_token %}
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Username"
+                    name="username"
+                  />
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Password"
+                    name="psw"
+                  />
+                  <button class="btn btn-primary" type="submit">Login</button>
+                  <a class="btn btn-link" href="{% url 'djangoapp:signup' %}"
+                    >Sign Up</a
+                  >
+                </div>
+              </form>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <form action="{% url 'djangoapp:signup' %}" method="post">
+        <div class="mt-4 container">
+          {% csrf_token %}
+          <h1>Sign Up</h1>
+          <hr />
+
+          <div class="form-group">
+            <div class="mb-3">
+              <label for="username" class="form-label">User Name</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter User Name: "
+                name="username"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="mb-3">
+              <label for="firstname" class="form-label">First Name</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter First Name: "
+                name="firstname"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="mb-3">
+              <label for="lastname" class="form-label">Last Name</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter First Name: "
+                name="lastname"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="mb-3">
+              <label for="psw" class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Enter Password: "
+                name="psw"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="mt-3">
+            {% if message %}
+            <div class="alert alert-warning">{{ message }}</div>
+            {% endif %}
+            <button class="btn btn-primary" type="submit">Sign up</button>
+          </div>
+        </div>
+      </form>
+    </main>
+  </body>
 </html>
