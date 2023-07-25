@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
-    <title>Dealership Review</title>
+    <title>Contact | Dealership Review</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -17,7 +16,6 @@
     <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
     <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
   </head>
-
   <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -38,7 +36,7 @@
 
         <div class="collapse navbar-collapse" id="navLinks">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="{% url 'djangoapp:index' %}"
                 >Home <span class="sr-only">(current)</span></a
               >
@@ -46,7 +44,7 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'djangoapp:about' %}">About</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="{% url 'djangoapp:contact' %}"
                 >Contact</a
               >
@@ -55,6 +53,17 @@
         </div>
       </nav>
     </header>
-    <!--Add a dealer table here -->
+    <main>
+      <div class="container mt-4">
+        <h1>Our address and phone number:</h1>
+        <div class="card">
+          <div class="card-body">
+            <p>123 Main St</p>
+            <p>Anytown, USA, 5555</p>
+            <p><strong> Tel: </strong> 555-555-5555</p>
+          </div>
+        </div>
+      </div>
+    </main>
   </body>
 </html>
